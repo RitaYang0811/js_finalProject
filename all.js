@@ -51,7 +51,6 @@ function addCart(id) {
       quantity: 1,
     },
   };
-
   axios
     .post(
       `https://livejs-api.hexschool.io/api/livejs/v1/customer/${_apiPath}/carts`,
@@ -117,12 +116,10 @@ productSelect.addEventListener("change", function (e) {
     renderProductsData(filterProductData);
   }
 });
-
 //渲染篩選器無內容
 function renderNoResult() {
   productList.innerHTML = "<h2>目前沒有符合篩選條件的商品</h2>";
 }
-
 //渲染商品列表
 function renderProductsData(Data) {
   let str = "";
@@ -149,11 +146,9 @@ function renderProductsData(Data) {
     });
   });
 }
-
 //渲染購物車列表
 function renderCartsList() {
   let str = "";
-
   let title = `<tr>
   <th width="40%">品項</th>
   <th width="15%">單價</th>
@@ -324,5 +319,23 @@ function getOrderData() {
     });
 }
 
+//關鍵字搜尋
+const searchInput = document.querySelector(".searchInput");
+const searchBtn = document.querySelector(".searchBtn");
+searchBtn.addEventListener("click", keywordSearch);
+function keywordSearch() {
+  let key = searchInput.value.trim().toLowerCase();
+  console.log(key);
+
+  let searchProductData = [];
+  searchProductData = productsData.filter((item) => {
+    let title = item.title.toLowerCase();
+    let description = item.description.toLowerCase();
+    //如果需要比對多欄位可使用||
+    // return title.match(key) || description.includes(key);
+    return title.match(key);
+  });
+  renderProductsData(searchProductData);
+}
 getProductsData();
 getCartData();

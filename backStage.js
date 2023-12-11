@@ -52,21 +52,23 @@ function getChartData(orderDataProducts) {
     colorKeys = Object.keys(obj);
   });
   console.log(colorKeys);
-  let resultObj = {};
+
   function getColor(category, color) {
+    let resultObj = {};
     category.forEach((item, index) => {
       resultObj[item] = color[index];
     });
+    return resultObj;
   }
   let colorPalete = getColor(colorKeys, colorArr);
-  console.log(resultObj);
 
+  console.log(colorPalete);
   let chart = c3.generate({
     bindto: "#chart-category", // HTML 元素綁定
     data: {
       type: "pie",
       columns: chartData,
-      colors: resultObj,
+      colors: colorPalete,
     },
   });
   let chart2 = c3.generate({

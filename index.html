@@ -339,13 +339,26 @@
       </ul>
     </section>
     <section class="wrap productDisplay">
-      <select name="" class="productSelect">
-        <option value="全部" selected>全部</option>
-        <option value="床架">床架</option>
-        <option value="收納">收納</option>
-        <option value="窗簾">窗簾</option>
-        <option value="枕頭">枕頭</option>
-      </select>
+      <div class="productSearch">
+        <select name="" class="productSelect">
+          <option value="全部" selected>全部</option>
+          <option value="床架">床架</option>
+          <option value="收納">收納</option>
+          <option value="窗簾">窗簾</option>
+          <option value="枕頭">枕頭</option>
+        </select>
+        <div class="search-area">
+          <input
+            class="form-control me-2 searchInput"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success searchBtn" type="submit">
+            搜尋
+          </button>
+        </div>
+      </div>
       <ul class="productWrap"></ul>
     </section>
     <section class="shoppingCart">

@@ -955,3 +955,36 @@ body {
   color: #815ae4;
   transform: scale(1.5);
 }
+.search-area {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-right: 25px;
+  gap: 10px;
+}
+.searchInput {
+  border: 1px solid #b9b9b9;
+  color: #797979;
+  min-height: 38px;
+  min-width: 255px;
+  border-radius: 5px;
+  text-indent: 10px;
+}
+.searchBtn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 7px 15px;
+  color: #000000;
+  border: 1.3px solid #797979;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.searchBtn:hover {
+  background-color: #797979;
+  color: #ffffff;
+}
+.productSearch {
+  display: flex;
+  justify-content: space-between;
+}
