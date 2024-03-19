@@ -690,6 +690,10 @@ table {
   border-bottom: 1px solid #b9b9b9;
 }
 
+.shoppingCart-table tr:last-child {
+  border-bottom: 0;
+}
+
 @media (max-width: 767px) {
   .shoppingCart-table {
     width: 700px;
