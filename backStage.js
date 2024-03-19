@@ -19,10 +19,9 @@ function getOrderData() {
     .then(function (res) {
       orderData = res.data.orders;
       renderOrderData();
-      orderData.forEach((item) => {
-        let orderDataProducts = item.products;
-        getChartData(orderDataProducts);
-      });
+      let orderDataProducts = orderData.map((item) => item.products[0]);
+      console.log(orderDataProducts);
+      getChartData(orderDataProducts);
     })
     .catch(function (error) {
       console.log(error);
@@ -37,21 +36,35 @@ function getOrderData() {
 
 //整理圖表所有格式
 function getChartData(orderDataProducts) {
-  let obj = {};
+  let categoryObj = {};
+  let titleObj = {};
   let chartData = [];
-  let categoryArr = [];
-  let colorArr = ["#501ad9", " #815ae4", " #a387ea", "#b39ee9"];
-
+  let colorArr = ["#c3eb98", " #ebe198", " #98c3eb", "#c098eb"];
+  let categoryKeys;
+  let titleKeys;
+  //取得類別名稱
   orderDataProducts.forEach((item) => {
-    if (obj[item.category] === undefined) {
-      obj[item.category] = item.quantity;
+    if (categoryObj[item.category] === undefined) {
+      categoryObj[item.category] = item.quantity;
     } else {
-      obj[item.category] += item.quantity;
+      categoryObj[item.category] += item.quantity;
     }
-    chartData = Object.entries(obj);
-    colorKeys = Object.keys(obj);
+
+    categoryKeys = Object.keys(categoryObj);
   });
-  console.log(colorKeys);
+  //取得產品名稱
+  orderDataProducts.forEach((item) => {
+    if (titleObj[item.title] === undefined) {
+      titleObj[item.title] = item.quantity;
+    } else {
+      titleObj[item.title] += item.quantity;
+    }
+
+    titleKeys = Object.keys(titleObj);
+  });
+
+  categoryChartData = Object.entries(categoryObj);
+  titleChartData = Object.entries(titleObj);
 
   function getColor(category, color) {
     let resultObj = {};
@@ -60,23 +73,26 @@ function getChartData(orderDataProducts) {
     });
     return resultObj;
   }
-  let colorPalete = getColor(colorKeys, colorArr);
+  let categories = orderDataProducts.map((item) => item.category);
+  let title = orderDataProducts.map((item) => item.title);
 
-  console.log(colorPalete);
+  let colorCategory = getColor(categories, colorArr);
+  let colorTitle = getColor(title, colorArr);
+
   let chart = c3.generate({
     bindto: "#chart-category", // HTML 元素綁定
     data: {
       type: "pie",
-      columns: chartData,
-      colors: colorPalete,
+      columns: categoryChartData,
+      colors: colorCategory,
     },
   });
   let chart2 = c3.generate({
     bindto: "#chart-title", // HTML 元素綁定
     data: {
       type: "pie",
-      columns: chartData,
-      colors: resultObj,
+      columns: titleChartData,
+      colors: colorTitle,
     },
   });
 }

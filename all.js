@@ -23,7 +23,6 @@ function getProductsData() {
       renderProductsData(productsData);
     })
     .catch(function (error) {
-      // handle error
       console.log(error);
     });
 }
@@ -57,7 +56,14 @@ function addCart(id) {
       obj
     )
     .then(function (res) {
-      alert("恭喜成功加入購物車喔！");
+      Swal.fire({
+        text: "已成功加入購物車",
+        icon: "success",
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       getCartData();
 
       //renderCartsList();
@@ -82,7 +88,10 @@ function deleteAll() {
         error.response.data.message ===
         "購物車內已經沒有商品了 RRR ((((；゜Д゜)))"
       ) {
-        alert(error.response.data.message);
+        Swal.fire({
+          title: "購物車內已經沒有商品了",
+          icon: "warning",
+        });
       }
       console.log(error);
     });
@@ -94,6 +103,14 @@ function deleteItem(id) {
       `https://livejs-api.hexschool.io/api/livejs/v1/customer/${_apiPath}/carts/${id}`
     )
     .then(function (res) {
+      Swal.fire({
+        title: "已成功刪除商品！",
+        icon: "success",
+        showConfirmButton: false,
+        position: "top-end",
+        toast: true,
+        timer: 1500,
+      });
       getCartData();
     })
     .catch(function (error) {
@@ -123,8 +140,12 @@ function renderNoResult() {
 //渲染商品列表
 function renderProductsData(Data) {
   let str = "";
-  Data.forEach((item) => {
-    str += ` 
+  if (Data.length === 0) {
+    str =
+      "<p class='searchNoProduct'>抱歉，找不到符合搜尋條件的商品，請試試別的關鍵字。</p>";
+  } else {
+    Data.forEach((item) => {
+      str += ` 
     <li class="productCard">
     <h4 class="productType">新品</h4>
     <img
@@ -132,11 +153,12 @@ function renderProductsData(Data) {
       alt=""
     />
     <a href="#" class="addCartBtn" data-id="${item.id}">加入購物車</a>
-    <h3>${item.title}</h3>
+    <h3 class="productTitle">${item.title}</h3>
     <del class="originPrice">NT$${item.origin_price}</del>
     <p class="nowPrice">NT$${item.price}</p>
   </li>`;
-  });
+    });
+  }
   productList.innerHTML = str;
   const addCartBtn = document.querySelectorAll(".addCartBtn");
   addCartBtn.forEach(function (item) {
@@ -149,7 +171,7 @@ function renderProductsData(Data) {
 //渲染購物車列表
 function renderCartsList() {
   let str = "";
-  let title = `<tr>
+  let title = `<tr >
   <th width="40%">品項</th>
   <th width="15%">單價</th>
   <th width="15%">數量</th>
@@ -204,7 +226,30 @@ function renderCartsList() {
   //監聽刪除所有品項按鈕
   discardAllBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    deleteAll();
+    if (cartsList.length > 0) {
+      Swal.fire({
+        title: "你確定要刪除購物車內所有商品？",
+        text: "刪除後無法復原",
+        icon: "warning",
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonColor: "#ebd198",
+        cancelButtonColor: "#592d07",
+        confirmButtonText: "確定",
+        cancelButtonText: "取消",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          deleteAll();
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "購物車內已經沒有商品了",
+        icon: "warning",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   });
   //監聽x按鈕
   discardBtn.forEach((item) => {
@@ -241,7 +286,12 @@ function updateQuantity(id, itemNum) {
       if (
         err.response.data.message == "產品數量不可小於 1 RRR ((((；゜Д゜)))"
       ) {
-        alert("數量不可以少於一件");
+        Swal.fire({
+          title: "只剩一件不能再減囉～",
+          icon: "warning",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     });
 }
@@ -271,7 +321,14 @@ function deliverOrder() {
       userInfo
     )
     .then(function (res) {
-      alert("成功送出訂單");
+      Swal.fire({
+        title: "訂單已送出！",
+        icon: "success",
+        showConfirmButton: false,
+        position: "top-end",
+        toast: true,
+        timer: 1500,
+      });
       getCartData();
       clearUserInfo();
     })
@@ -281,7 +338,12 @@ function deliverOrder() {
         error.response.data.message ==
         "當前購物車內沒有產品，所以無法送出訂單 RRR ((((；゜Д゜)))"
       ) {
-        alert("購物車內沒有東西喔！快去買吧！");
+        Swal.fire({
+          title: "購物車內沒有商品，趕快去購物吧！",
+          icon: "warning",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     });
 }
@@ -330,12 +392,12 @@ function keywordSearch() {
   let searchProductData = [];
   searchProductData = productsData.filter((item) => {
     let title = item.title.toLowerCase();
-    let description = item.description.toLowerCase();
-    //如果需要比對多欄位可使用||
-    // return title.match(key) || description.includes(key);
     return title.match(key);
   });
+
   renderProductsData(searchProductData);
+  //清空輸入格
+  searchInput.value = "";
 }
 getProductsData();
 getCartData();

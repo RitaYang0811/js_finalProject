@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,53 +7,94 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <link rel="stylesheet" href="index.css" />
 
-    <title>WOWOROOM</title>
+    <!-- swiper -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/image/icon.png" />
+    <link rel="stylesheet" href="./assets/all.css" />
+
+    <title>LIGHT+LIFE</title>
   </head>
 
   <body>
     <nav class="topBar">
       <div class="wrap">
-        <h1><a href="#" class="logo">WOWOROOM</a></h1>
+        <h1>
+          <a href="./index.html" class="logo"
+            ><img
+              src="./assets/image/logo.png"
+              alt="logo"
+              style="max-width: 120px"
+          /></a>
+        </h1>
         <span class="material-icons menuToggle"> menu </span>
         <ul class="topBar-menu">
-          <li><a href="#bedAdvantage">床墊優勢</a></li>
-          <li><a href="#recommendation">好評推薦</a></li>
-          <li><a href="#transport">運送方式</a></li>
-          <li><a href="#orderInfo">立即預訂</a></li>
+          <li><a href="">常見問題</a></li>
+          <li><a href="./backStage.html">管理後台</a></li>
         </ul>
       </div>
     </nav>
-    <section class="wrap" id="bedAdvantage">
-      <div class="banner">
-        <h2 class="banner-text">窩窩家居<br />跟您一起品味生活</h2>
+
+    <!-- Slider main container -->
+    <swiper-container
+      class="mySwiper"
+      space-between="30"
+      centered-slides="true"
+      autoplay-delay="3500"
+      autoplay-disable-on-interaction="false"
+      loop="true"
+    >
+      <!-- Slides -->
+      <div class="swiper-slide">
+        <img
+          src="https://storage.googleapis.com/vue-course-api.appspot.com/greensheep/1710879301366.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=apQlyG9z3idxXqONOeHO2%2BBhMdBhAx3wMbOazjw1MhpxG2O4cbeBH24RUGBRX0zDvGEKy56DyZW9O3wOEawj9S3Vxj%2B90W11Iefy7yiCY5pnnmtGSnpKarztfygRhy9%2BQBrpxL44C1pYUaT4Ip9XR4LYNUFGZ%2FpTenSD4FJXBmX205rvLqWBoXlyNciHlwPjfy9Fj1Si1XaCyHQK9KORqiVB6idrRTaa7gFWg14E2U7iYDc%2FuBiEO0Eqg5JzoW9dkaGVf2Skp%2B5xDiavBM5TobB5bgNb71pEXTDVxSJfbKRObD%2FxqRNRfKH%2BJpE4BDaFy%2Bc34tWKwVOFFr%2BWimSMFQ%3D%3D"
+          alt=""
+        />
       </div>
-      <h3 class="section-title">床墊優勢</h3>
+      <div class="swiper-slide">
+        <img
+          src="https://storage.googleapis.com/vue-course-api.appspot.com/greensheep/1710879820589.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=N3fOQ74IfRtmcDVO75IDpt0fw8c6SzcNqoLK1kak704jwDUE8rdON0%2BwY%2BeL0z%2F8GDTcfYSPPG%2BXfDpKDHRsjOVgbKRkTCdUjFVsV3zzzMy%2FYvQc20NUS6DyWSx56Lz4n4XasBgbfFNieHp04j93ufSqYNiF3592ALq4hNTzaZkNn5KSuzolz4Q8c9aq%2FKbB0C8c7Q4CjvjmGb0g%2B3qI4lWohWGPpu4ALUCblE0Y0RQcQLHadKIgJpM8QqxCWupM62yqjVXH0TF5DmuEHOJDeYZkdX8yoHw%2FWJAGDfaFEhMNJgteVp%2BXY%2F7DNzdnV2YOk1G8uTe762UQ5ZBBQKSetw%3D%3D"
+          alt=""
+        />
+      </div>
+      <div class="swiper-slide">
+        <img
+          src="https://storage.googleapis.com/vue-course-api.appspot.com/greensheep/1710880515608.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=eKC7fTU2RqDx0AoFvZfdlbx2a%2FiIqRu4dg5JCt%2FeGbozETeTjPl3moahLKKGHFQzC4Iqq0elX0RkVVOl1t%2BNtI9wQuj4kcm2lgVbgvCY5GTzAul%2FUciAT0oiDBmdXTsNJoAn6AfPaDXdUEA%2BESuBsl58uPl3QV7uWU8TQg74J%2BEIvkzvGbsJNI8%2FMb8TTnm2or94FurDoB%2FJTZNzL%2F9Iraj4iEOeBZ0f5et05wKF%2B3LPZq9fKaRPScL%2Flw1cxL6szWGG9yldiR2wLG1BzyI5wxtgiJdJsbgOaK2rkVY4G5Rpn9nN3Gp%2FAhmOW0EnidgLYybkVwDr5sm6Y8nhQViAaA%3D%3D"
+          alt=""
+        />
+      </div>
+    </swiper-container>
+
+    <section class="wrap" id="bedAdvantage">
+      <h3 class="section-title">LIGHT Life 三大優勢</h3>
       <ul class="bedAdvantage">
         <li>
           <img
             class="bedAdvantage-img"
-            src="https://github.com/hexschool/js-training/blob/main/%E7%AC%AC%E4%B9%9D%E9%80%B1%E4%B8%BB%E7%B7%9A%E4%BB%BB%E5%8B%99%E5%9C%96%E5%BA%AB/tR426y5.png?raw=true"
-            alt="原木料環保"
+            src="./assets/image/delivery.png"
+            alt="快速到府"
           />
-          <p class="bedAdvantage-text">原木料環保</p>
+          <p class="bedAdvantage-text">滿額即享免運到府安裝</p>
         </li>
         <li>
           <img
             class="bedAdvantage-img"
-            src="https://github.com/hexschool/js-training/blob/main/%E7%AC%AC%E4%B9%9D%E9%80%B1%E4%B8%BB%E7%B7%9A%E4%BB%BB%E5%8B%99%E5%9C%96%E5%BA%AB/Fd2MiBb.png?raw=true"
-            alt="好收納"
+            src="./assets/image/payment.png"
+            alt="金流服務"
           />
-          <p class="bedAdvantage-text">好收納</p>
+          <p class="bedAdvantage-text">支援多項金流服務</p>
         </li>
         <li>
           <img
             class="bedAdvantage-img"
-            src="https://github.com/hexschool/js-training/blob/main/%E7%AC%AC%E4%B9%9D%E9%80%B1%E4%B8%BB%E7%B7%9A%E4%BB%BB%E5%8B%99%E5%9C%96%E5%BA%AB/5n1uTFh.png?raw=true"
-            alt="好組裝"
+            src="./assets/image/24service.png"
+            alt="客服"
           />
-          <p class="bedAdvantage-text">好組裝</p>
+          <p class="bedAdvantage-text">24小時客服在線</p>
         </li>
       </ul>
     </section>
@@ -65,7 +106,7 @@
             <thead>
               <tr>
                 <th></th>
-                <th>窩窩系統模組家具</th>
+                <th>LIGHT Life 家具<br /></th>
                 <th class="text-muted">組合式家具</th>
                 <th class="text-muted">實木家具</th>
               </tr>
@@ -83,7 +124,7 @@
               <td></td>
             </tr>
             <tr>
-              <td>床墊規格彈性大</td>
+              <td>各式尺寸選擇多</td>
               <td><span class="material-icons">done</span></td>
               <td class="text-muted">不一定</td>
               <td class="text-muted">不一定</td>
@@ -351,10 +392,10 @@
           <input
             class="form-control me-2 searchInput"
             type="search"
-            placeholder="Search"
+            placeholder="請輸入商品"
             aria-label="Search"
           />
-          <button class="btn btn-outline-success searchBtn" type="submit">
+          <button class="btn btn-outline-primary searchBtn" type="submit">
             搜尋
           </button>
         </div>
@@ -438,6 +479,7 @@
     </section>
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <!-- 預設 JS，請同學不要修改此處 -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -500,5 +542,8 @@
       }
     </script>
     <script src="all.js"></script>
+    <!-- swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
