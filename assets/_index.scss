@@ -115,7 +115,7 @@
 .swiper-slide img {
   display: block;
   width: 100%;
-  height: 800px;
+  height: 600px;
   object-fit: cover;
 }
 
@@ -129,6 +129,15 @@
   bottom: 200px;
   font-weight: medium;
   z-index: 2;
+}
+
+@media (max-width: 767px) {
+  .mySwiper {
+    height: 300px;
+  }
+  .swiper-slide img {
+    height: 300px;
+  }
 }
 
 .section-title {
